@@ -5,17 +5,24 @@ import ListaTareas from "./components/ListaTareas";
 
 function App() {
   //the task list
-  const [task,setTask] = useState([]);
+  const [taskList,setTaskList] = useState(JSON.parse(localStorage.getItem("taskList")) || []);
+
+  //Load data on page load
+  useEffect(() => {
+      setTaskList(JSON.parse(localStorage.getItem("taskList")))
+  },[]);//empty so it loads the list only when the page first loads
   
-  //id counter
-  const [idCounter,setIdCounter] = useState(1)
+  //save the taskList
+  useEffect(() =>{
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+  },[taskList]) //with taskList so it saves with every change made to taskList
   
   //"complete" key, for sorting toDo from done
   const [isComplete, setIsComplete] = useState(false)
   
-  //button to remove a task
+  //button to remove a taskList
   const removeBtn = (taskIdToRemove) =>{
-    setTask(task.filter((tasks) => tasks.id !== taskIdToRemove))
+    setTaskList(taskList.filter((tasks) => tasks.id !== taskIdToRemove))
   }
   
   //alternate between completed true or false
@@ -26,16 +33,15 @@ function App() {
   
   //the function for adding new tasks to the list, it adds an id, the key "texto" for the newTask text to be placed and the key "completada" with the defaul status of false
   const handleTaskChange = (newTask) => {
-    setTask([...task, {id:idCounter,texto: newTask, completada: isComplete}]);
-    //updates the counter for the next task to use it
-    setIdCounter(idCounter+1)
+    setTaskList([...taskList, {id:Date.now(),texto: newTask, completada: isComplete}]);
+    
   }
 
   return (
     <>
     <h1>My React Tutorial</h1>
       <TareaFormulario onTaskChange={handleTaskChange} />
-      <ListaTareas taskList={...task} onToggleComplete={toggleComplete} onRemove={removeBtn} />
+      <ListaTareas taskList={taskList} onToggleComplete={toggleComplete} onRemove={removeBtn} />
     </>
   )
 }
