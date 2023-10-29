@@ -57,7 +57,7 @@ function App() {
           </>
           } 
       />
-      <Route path="/Tarea/:taskId" element={<Tarea taskList={taskList}/>} />
+      <Route path="/Tarea/:taskId" element={<Tarea taskList={taskList} setTaskList={setTaskList}/>} />
     </Routes>
   </>
   )
