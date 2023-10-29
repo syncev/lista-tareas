@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from "react"
+
 import TareaFormulario from "./components/TareaFormulario";
 import ListaTareas from "./components/ListaTareas";
+import Tarea from "./components/Tarea"; 
+
+import { Routes, Route, Link } from "react-router-dom";
 
 
 function App() {
@@ -31,7 +35,7 @@ function App() {
     console.log(isComplete)
   }
   
-  //the function for adding new tasks to the list, it adds an id, the key "texto" for the newTask text to be placed and the key "completada" with the defaul status of false
+  //the function for adding new tasks to the list, it adds an id that is set to be the actual time so it never repeats, the key "texto" for the newTask text to be placed and the key "completada" with the defaul status of false
   const handleTaskChange = (newTask) => {
     setTaskList([...taskList, {id:Date.now(),texto: newTask, completada: isComplete}]);
     
@@ -39,10 +43,23 @@ function App() {
 
   return (
     <>
-    <h1>My React Tutorial</h1>
-      <TareaFormulario onTaskChange={handleTaskChange} />
-      <ListaTareas taskList={taskList} onToggleComplete={toggleComplete} onRemove={removeBtn} />
-    </>
+      <p>
+      </p>
+      <Routes>
+        <Route 
+          index
+          element={
+            <>
+            <h1>Lista de Tareas</h1>
+            <Link to="/Tarea/*" > Tarea </Link>
+            <TareaFormulario onTaskChange={handleTaskChange} />
+            <ListaTareas taskList={taskList} onToggleComplete={toggleComplete} onRemove={removeBtn} />
+          </>
+          } 
+      />
+      <Route path="/Tarea/:taskId" element={<Tarea taskList={taskList}/>} />
+    </Routes>
+  </>
   )
 }
 
