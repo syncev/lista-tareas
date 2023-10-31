@@ -5,7 +5,6 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
-import { MagicMotion } from "react-magic-motion";
 
 const ListaTareas = ({ taskList, onToggleComplete, onRemove }) => {
   const handleOnToggleComplete = (taskId) => {
@@ -51,14 +50,12 @@ const ListaTareas = ({ taskList, onToggleComplete, onRemove }) => {
 
   return (
     <>
-    <MagicMotion>
       <div className="lista-tareas-wrapper">
         <div className="box-style">
           <h1 className="lista-tareas-title">Lista de Tareas</h1>
           <ul>{renderList}</ul>
         </div>
       </div>
-      </MagicMotion>
     </>
   );
 };
