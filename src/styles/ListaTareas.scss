@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap");
+
+.lista-tareas-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 65px;
+}
+.box-style {
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+  border: 3px solid #93c1c9;
+  border-radius: 10px;
+  width: 65%;
+  min-height: 300px;
+  /*glow effect*/
+  box-shadow: 0 0 100px 1px rgba(255, 255, 255, 0.466); /* Adjust the values for a stronger glow effect */
+  background: linear-gradient(
+    43deg,
+    rgba(65, 89, 208, 0.733) 0%,
+    rgba(200, 80, 192, 0.76) 46%,
+    rgba(201, 139, 25, 0.411) 100%
+  );
+}
+
+.lista-tareas-title {
+  color: white;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+}
+ul {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+
+  //order the li based on their class
+   li {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    overflow-wrap: break-word;
+    font-size: 1.3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 90%;
+    margin-bottom: 10px;
+    padding-top: 10px;
+
+    transition: all 0.5s;
+
+    &.incomplete {
+      border-top: 1px solid #40a5b6;
+      color: #38d1ec;
+      font-weight: 600;
+    }
+    &.completed {
+      color: rgb(209, 209, 209);
+      text-decoration: line-through;
+      border-top: 1px solid #e2e6e7;
+      font-weight: 600;
+      order: 1;
+
+      .task-list-icons,
+      .task-link {
+        color: rgb(209, 209, 209);
+      }
+    }
+    .task-list-text {
+      width: 80%;
+    }
+    .task-list-icons,
+    .task-link {
+      width: 20%;
+      color: #378a99;
+      text-decoration: none;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .complete-icon,
+    .task-link,
+    .remove-icon {
+      cursor: pointer;
+      
+    }
+  }
+  
+}

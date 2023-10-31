@@ -38,29 +38,49 @@ const Tarea = ({ taskList, setTaskList }) => {
 
   return (
     <>
-      <h1>Tarea</h1>
-      {selectedTask ? (
-        <div>
-          {isEditing ? (
-            <div>
-              <input
-                type="text"
-                value={editedText}
-                onChange={(e) => setEditedText(e.target.value)}
-              />
-              <button onClick={handleSaveClick}>Guardar</button>
-            </div>
-          ) : (
-            <h2 onClick={handleEditClick}> {selectedTask.texto}</h2>
-          )}
-          <p>Completada: {selectedTask.completada ? "si" : "no"}</p>
-        </div>
-      ) : (
-        <p>Error, tarea no encontrada</p>
-      )}
-      <p>
-        <Link to="/"> Volver</Link>
-      </p>
+      <h1 className="tarea-title">-Tarea-</h1>
+      <div className="tarea-wrapper">
+        {selectedTask ? (
+          <div className="tarea-container">
+            {isEditing ? (
+              <div className="tarea-and-save-wrapper-edit">
+                <textarea
+                  rows={8}
+                  cols={70}
+                  value={editedText}
+                  className="tarea-text-input"
+                  onChange={(e) => setEditedText(e.target.value)}
+                />
+                <button className="tarea-save-button" onClick={handleSaveClick}>
+                  Guardar
+                </button>
+              </div>
+            ) : (
+              <div className="tarea-and-save-wrapper">
+                <h2 className="tarea-text" onClick={handleEditClick}>
+                  {" "}
+                  {selectedTask.texto}
+                </h2>
+                <span className="tarea-text-legend">
+                  Click en la tarea para editar
+                </span>
+              </div>
+            )}
+          </div>
+        ) : (
+          <p>Error, tarea no encontrada</p>
+        )}
+        <Link to="/" className="link-button">
+          <button className="noselect">
+            <span className="text">Volver</span>
+            <span className="icon">
+              <svg viewBox="7 0 20 34">
+                <path d="M26.025 14.496l-14.286-.001 6.366-6.366L15.979 6 5.975 16.003 15.971 26l2.129-2.129-6.367-6.366h14.29z" />
+              </svg>
+            </span>
+          </button>
+        </Link>
+      </div>
     </>
   );
 };
